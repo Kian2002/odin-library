@@ -13,24 +13,50 @@ function Book(title, author, pages, read) {
   };
 }
 
+const hobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295, false);
+const testBook = new Book("test", "testman", 100, false);
+
 const addBookToLibrary = (...books) => {
   books.forEach((book) => {
     myLibrary.push(book);
   });
 };
 
-const hobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295, false);
-const testBook = new Book("test", "testman", 100, false);
-
 addBookToLibrary(hobbit, testBook);
 
 const displayBooks = () => {
+  document.getElementById("book-card").textContent = "";
+
   myLibrary.forEach((book) => {
     console.log(book);
     const title = document.createElement("div");
     title.innerText = book.getInfo();
-    document.getElementById("container").appendChild(title);
+    document.getElementById("book-card").appendChild(title);
   });
 };
 
 displayBooks();
+
+const openNewBook = () => {
+  const bookForm = document.getElementById("book-form");
+  const displayVal = bookForm.className;
+
+  if (displayVal === "hidden") {
+    bookForm.classList.remove("hidden");
+    bookForm.classList.add("visible");
+  } else {
+    bookForm.classList.remove("visible");
+    bookForm.classList.add("hidden");
+  }
+};
+
+// eslint-disable-next-line no-unused-vars
+const newBook = (e) => {
+  e.preventDefault();
+  const [title, author, pages, read] = e.target;
+  const newBook = new Book(title.value, author.value, pages.value, read.value);
+  console.log(newBook.getInfo());
+  addBookToLibrary(newBook);
+  openNewBook();
+  displayBooks();
+};
