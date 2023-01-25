@@ -69,10 +69,19 @@ const modalHandler = () => {
 // eslint-disable-next-line no-unused-vars
 const newBook = (e) => {
   e.preventDefault();
+
   const [title, author, pages, read] = e.target;
-  const newBook = new Book(title.value, author.value, pages.value, read.value);
+  const newBook = new Book(
+    title.value,
+    author.value,
+    pages.value,
+    read.checked
+  );
+
   library.addBook(newBook);
+  // close modal
   modalHandler();
+  // show new list
   document.getElementById("book-card").textContent = "";
   for (let book of library.books) displayBooks(book);
 };
