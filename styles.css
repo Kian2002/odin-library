@@ -15,6 +15,16 @@ body {
     --secondary-color: #EDEBA0;
 }
 
+/* Header */
+
+header {
+    background-color: var(--secondary-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    padding: 10px;
+}
 
 /* main section */
 
@@ -38,7 +48,7 @@ body {
 .btn {
     border: 0;
     border-radius: 10px;
-    font-size: 20px;
+    font-size: 1.5rem;
     background-color: var(--primary-color);
     color: var(--secondary-color);
 }
