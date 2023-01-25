@@ -81,7 +81,12 @@ for (let book of library.books) {
 }
 const modalHandler = () => {
   const bookForm = document.getElementById("book-form");
+  bookForm.reset();
+
   const displayVal = bookForm.className;
+
+  const buttonText = document.getElementById("new-book");
+  buttonText.textContent = "I changed my mind";
 
   if (displayVal === "hidden") {
     bookForm.classList.remove("hidden");
@@ -89,6 +94,7 @@ const modalHandler = () => {
   } else {
     bookForm.classList.remove("visible");
     bookForm.classList.add("hidden");
+    buttonText.textContent = "New Book";
   }
 };
 
