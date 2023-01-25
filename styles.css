@@ -3,10 +3,82 @@
     padding: 0;
 }
 
+body {
+    height: 100%;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    background-color: var(--primary-color);
+}
+
+:root {
+    --primary-color: #928C6F;
+    --secondary-color: #EDEBA0;
+}
+
+
+/* main section */
+
+#card {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.book-card {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    background-color: #FFF;
+    gap: 20px;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.btn {
+    border: 0;
+    border-radius: 10px;
+    font-size: 20px;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+/* form section */
+
 .hidden {
     display: none;
 }
 
 .visible {
-    display: block;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    z-index: 999;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 30px;
+    border-radius: 10px;
+    gap: 15px;
+    color: var(--secondary-color);
+    background-color: rgb(0, 0, 0);
+}
+
+.visible h1 {
+    padding: 20px;
+}
+
+.input {
+    padding: 5px;
+    width: 100%;
+    outline: var(--secondary-color);
+    border: 0;
+    border-bottom: 1px solid black;
+}
+
+#book-submit {
+    border-radius: 10px;
+    border: 0;
+    padding: 10px;
+    color: var(--primary-color);
 }

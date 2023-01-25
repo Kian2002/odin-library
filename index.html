@@ -6,20 +6,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
     <title>Library</title>
 </head>
 
 <body>
-    <div id="book-card">
-    </div>
+    <header>
+        <h1>Da Library</h1>
+        <button id="new-book" type="button" onclick="modalHandler()">New Book</button>
+    </header>
 
-    <button id="new-book" type="button" onclick="modalHandler()">New Book</button>
+    <main>
+
+        <div id="card"></div>
+    </main>
+
 
     <form id="book-form" class="hidden" onsubmit="newBook(event)">
-        <input type="text" name="title" id="book-title">
-        <input type="text" name="author" id="book-author">
-        <input type="number" name="pages" id="book-pages">
-        <input type="checkbox" name="read" id="book-read">
+        <h1>Add A New Book</h1>
+        <input type="text" name="title" id="book-title" placeholder="Title" class="input" required>
+        <input type="text" name="author" id="book-author" placeholder="Author" class="input" required>
+        <input type="number" name="pages" id="book-pages" placeholder="Pages" class="input" required>
+        <label for="read"> Have You Read It?
+            <input type="checkbox" name="read" id="book-read">
+        </label>
+
         <button type="submit" id="book-submit">Add Book</button>
     </form>
 

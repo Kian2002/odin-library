@@ -9,6 +9,8 @@ function Book(title, author, pages, read) {
       this.read ? "read" : "not yet read"
     }`;
   };
+
+  this.toggleRead = Boolean;
 }
 
 function Library() {
@@ -23,7 +25,7 @@ function Library() {
   this.deleteBook = (title) => {
     const foundBook = this.books.find((book) => book.title === title);
     this.books.splice(this.books.indexOf(foundBook), 1);
-    document.getElementById("book-card").textContent = "";
+    document.getElementById("card").textContent = "";
     for (let book of this.books) displayBooks(book);
   };
 }
@@ -38,16 +40,40 @@ library.addBook(hobbit, testBook);
 const displayBooks = (book) => {
   const bookDiv = document.createElement("div");
   const delBtn = document.createElement("button");
+  const readBtn = document.createElement("button");
+  const title = document.createElement("h1");
+  const author = document.createElement("h4");
+  const pages = document.createElement("h5");
 
   delBtn.onclick = () => {
     library.deleteBook(book.title);
   };
 
-  bookDiv.innerText = book.getInfo();
-  delBtn.textContent = "DELETE";
+  readBtn.onclick = () => {
+    if (readBtn.textContent === "Read") {
+      readBtn.textContent = "Not Read";
+    } else {
+      readBtn.textContent = "Read";
+    }
+  };
 
-  document.getElementById("book-card").appendChild(bookDiv);
-  document.getElementById("book-card").appendChild(delBtn);
+  delBtn.textContent = "DELETE";
+  readBtn.textContent = "Read";
+  delBtn.className = "btn";
+  readBtn.className = "btn";
+
+  title.textContent = book.title;
+  author.textContent = book.author;
+  pages.textContent = book.pages;
+  readBtn.textContent = book.read ? "Read" : "Not Read";
+
+  bookDiv.appendChild(title);
+  bookDiv.appendChild(author);
+  bookDiv.appendChild(pages);
+  bookDiv.appendChild(delBtn);
+  bookDiv.appendChild(readBtn);
+
+  document.getElementById("card").appendChild(bookDiv).className = "book-card";
 };
 
 for (let book of library.books) {
@@ -81,7 +107,7 @@ const newBook = (e) => {
   library.addBook(newBook);
   // close modal
   modalHandler();
-  // show new list
-  document.getElementById("book-card").textContent = "";
+  // clear old list & show new list
+  document.getElementById("card").textContent = "";
   for (let book of library.books) displayBooks(book);
 };
