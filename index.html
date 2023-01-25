@@ -10,8 +10,11 @@
 </head>
 
 <body>
-    <div id="book-card"></div>
-    <button id="new-book" type="button" onclick="openNewBook()">New Book</button>
+    <div id="book-card">
+    </div>
+
+    <button id="new-book" type="button" onclick="modalHandler()">New Book</button>
+
     <form id="book-form" class="hidden" onsubmit="newBook(event)">
         <input type="text" name="title" id="book-title">
         <input type="text" name="author" id="book-author">

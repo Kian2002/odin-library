@@ -1,5 +1,3 @@
-let myLibrary = [];
-
 function Book(title, author, pages, read) {
   this.title = title;
   this.author = author;
@@ -13,31 +11,49 @@ function Book(title, author, pages, read) {
   };
 }
 
+function Library() {
+  this.books = [];
+
+  this.addBook = (...books) => {
+    books.forEach((book) => {
+      this.books.push(book);
+    });
+  };
+
+  this.deleteBook = (title) => {
+    const foundBook = this.books.find((book) => book.title === title);
+    this.books.splice(this.books.indexOf(foundBook), 1);
+    document.getElementById("book-card").textContent = "";
+    for (let book of this.books) displayBooks(book);
+  };
+}
+
+const library = new Library();
+
 const hobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295, false);
 const testBook = new Book("test", "testman", 100, false);
 
-const addBookToLibrary = (...books) => {
-  books.forEach((book) => {
-    myLibrary.push(book);
-  });
+library.addBook(hobbit, testBook);
+
+const displayBooks = (book) => {
+  const bookDiv = document.createElement("div");
+  const delBtn = document.createElement("button");
+
+  delBtn.onclick = () => {
+    library.deleteBook(book.title);
+  };
+
+  bookDiv.innerText = book.getInfo();
+  delBtn.textContent = "DELETE";
+
+  document.getElementById("book-card").appendChild(bookDiv);
+  document.getElementById("book-card").appendChild(delBtn);
 };
 
-addBookToLibrary(hobbit, testBook);
-
-const displayBooks = () => {
-  document.getElementById("book-card").textContent = "";
-
-  myLibrary.forEach((book) => {
-    console.log(book);
-    const title = document.createElement("div");
-    title.innerText = book.getInfo();
-    document.getElementById("book-card").appendChild(title);
-  });
-};
-
-displayBooks();
-
-const openNewBook = () => {
+for (let book of library.books) {
+  displayBooks(book);
+}
+const modalHandler = () => {
   const bookForm = document.getElementById("book-form");
   const displayVal = bookForm.className;
 
@@ -55,8 +71,8 @@ const newBook = (e) => {
   e.preventDefault();
   const [title, author, pages, read] = e.target;
   const newBook = new Book(title.value, author.value, pages.value, read.value);
-  console.log(newBook.getInfo());
-  addBookToLibrary(newBook);
-  openNewBook();
-  displayBooks();
+  library.addBook(newBook);
+  modalHandler();
+  document.getElementById("book-card").textContent = "";
+  for (let book of library.books) displayBooks(book);
 };
