@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a1f0c60f3b.js" crossorigin="anonymous"></script>
     <title>Library</title>
 </head>
 
@@ -20,21 +21,26 @@
     <main class="main">
         <button id="new-book" class="new-book-btn" type="button" onclick="modalHandler()">New Book</button>
         <div id="card"></div>
+
+        <form id="book-form" class="hidden" onsubmit="newBook(event)">
+            <h1>Add A New Book</h1>
+            <input type="text" name="title" id="book-title" placeholder="Title" class="input" required>
+            <input type="text" name="author" id="book-author" placeholder="Author" class="input" required>
+            <input type="number" name="pages" id="book-pages" placeholder="Pages" class="input" required>
+            <label for="read"> Have You Read It?
+                <input type="checkbox" name="read" id="book-read">
+            </label>
+
+            <button type="submit" id="book-submit">Add Book</button>
+        </form>
     </main>
 
-    <form id="book-form" class="hidden" onsubmit="newBook(event)">
-        <h1>Add A New Book</h1>
-        <input type="text" name="title" id="book-title" placeholder="Title" class="input" required>
-        <input type="text" name="author" id="book-author" placeholder="Author" class="input" required>
-        <input type="number" name="pages" id="book-pages" placeholder="Pages" class="input" required>
-        <label for="read"> Have You Read It?
-            <input type="checkbox" name="read" id="book-read">
-        </label>
 
-        <button type="submit" id="book-submit">Add Book</button>
-    </form>
 
-    <footer></footer>
+    <footer>
+        <h2 id="date"></h2>
+        <a href="https://github.com/Kian2002/odin-etch-a-sketch" target="_blank" class="fa-brands fa-github fa-xl"></a>
+    </footer>
 
     <script src="app.js"></script>
 </body>

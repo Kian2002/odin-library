@@ -117,3 +117,9 @@ const newBook = (e) => {
   document.getElementById("card").textContent = "";
   for (let book of library.books) displayBooks(book);
 };
+
+// Footer
+
+const date = new Date().getFullYear();
+
+document.getElementById("date").innerText = `Copyright ${date} \u00A9 Kian2002`;
